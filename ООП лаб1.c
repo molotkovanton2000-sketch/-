@@ -170,11 +170,10 @@ int main(void){
         printf("2. Count\n");
         printf("3. PrintList\n");
         printf("4. GetItem\n");
-        printf("5. Remove\n");
-        printf("6. Delete\n");
-        printf("7. Insert\n");
-        printf("8. Clear\n");
-        printf("9. GetIndex\n");
+        printf("5. Delete\n");
+        printf("6. Insert\n");
+        printf("7. Clear\n");
+        printf("8. GetIndex\n");
         printf("0. Exit\n");
         printf("Choice: ");
         scanf("%d", &choice);
@@ -204,20 +203,10 @@ int main(void){
             int idx;
             printf("index: ");
             scanf("%d", &idx);
-            Item *p = Remove(&list, idx);
-            printf("Removed = %p\n", (void*)p);
-            if (p != NULL){
-                free(p);
-            }
-        }
-        else if (choice == 6){
-            int idx;
-            printf("index: ");
-            scanf("%d", &idx);
             Delete(&list, idx);
             printf("Deleted. Count = %d\n", Count(&list));
         }
-        else if (choice == 7){
+        else if (choice == 6){
             int idx;
             printf("index: ");
             scanf("%d", &idx);
@@ -228,11 +217,11 @@ int main(void){
             Insert(&list, it, idx);
             printf("Inserted. Count = %d\n", Count(&list));
         }
-        else if (choice == 8){
+        else if (choice == 7){
             Clear(&list);
             printf("Cleared. Count = %d\n", Count(&list));
         }
-        else if (choice == 9){
+        else if (choice == 8){
             Item *p;
             printf("pointer (hex, like 0x...): ");
             scanf("%p", (void**)&p);
