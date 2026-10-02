@@ -61,9 +61,6 @@ Item* GetItem(const List *list, int index){
 }
 
 Item* Remove(List *list, int index){
-    if (list == NULL){
-        return NULL;
-    }
     Item *victim = GetItem(list, index);
     if (victim == NULL){
         return NULL;
@@ -91,36 +88,32 @@ void Delete(List *list, int index){
 }
 
 void Insert(List *list, Item *item, int index){
-    if (list == NULL || item == NULL){
-        return;
-    }
-    if (list->head == NULL || index >= Count(list)){
+    Item *next1 = GetItem(list, index);
+    if (next1 == NULL){
         Add(list, item);
         return;
     }
-    if (index <= 0){
+    
+    if (next1 == list->head){
         item->prev = NULL;
         item->next = list->head;
         list->head->prev = item;
         list->head = item;
         return;
     }
-    Item *prev = GetItem(list, index - 1);
-    Item *next = prev->next;
-    item->prev = prev;
-    item->next = next;
-    prev->next = item;
-    next->prev = item;
+    
+    Item *prev1 = next1->prev;
+    item->prev = prev1;
+    item->next = next1;
+    next1->prev = item;
+    prev1->next = item;
 }
 
 void Clear(List *list){
     if (list == NULL) return;
     Item *p = list->head;
-    while (p != NULL){
-        Item *next = p->next;
-        free(p);
-        p = next;
-    }
+    while (list->head)
+    	Delete(list, 0);
     list->head = NULL;
     list->tail = NULL;
 }
