@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 typedef struct Item{
     struct Item *prev;
@@ -151,6 +152,7 @@ void PrintList(const List *list){
 }
 
 int main(void){
+	setlocale(LC_ALL, "");
     List list;
     list.head = NULL;
     list.tail = NULL;

@@ -43,7 +43,7 @@ int main(void){
         if (scanf("%d", &choice) != 1){
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
-            printf("Неверный ввод. Введите число.\n");
+            printf("Invalid input. Enter a number.\n");
             continue;
         }
 
@@ -67,11 +67,11 @@ int main(void){
             if (scanf("%d", &idx) != 1){
                 int c;
                 while ((c = getchar()) != '\n' && c != EOF);
-                printf("Неверный ввод.\n");
+                printf("Invalid input.\n");
                 continue;
             }
             if (idx < 0){
-                printf("Индекс не может быть отрицательным.\n");
+                printf("Index cannot be negative.\n");
                 continue;
             }
             Item *p = GetItem(&list, idx);
@@ -83,11 +83,11 @@ int main(void){
             if (scanf("%d", &idx) != 1){
                 int c;
                 while ((c = getchar()) != '\n' && c != EOF);
-                printf("Неверный ввод.\n");
+                printf("Invalid input.\n");
                 continue;
             }
             if (idx < 0){
-                printf("Индекс не может быть отрицательным.\n");
+                printf("Index cannot be negative.\n");
                 continue;
             }
             Delete(&list, idx);
@@ -99,11 +99,11 @@ int main(void){
             if (scanf("%d", &idx) != 1){
                 int c;
                 while ((c = getchar()) != '\n' && c != EOF);
-                printf("Неверный ввод.\n");
+                printf("Invalid input.\n");
                 continue;
             }
             if (idx < 0){
-                printf("Индекс не может быть отрицательным.\n");
+                printf("Index cannot be negative.\n");
                 continue;
             }
             Item *it = (Item*)malloc(sizeof(Item));
@@ -123,7 +123,7 @@ int main(void){
             if (scanf("%p", (void**)&p) != 1){
                 int c;
                 while ((c = getchar()) != '\n' && c != EOF);
-                printf("Неверный указатель.\n");
+                printf("Invalid pointer.\n");
                 continue;
             }
             printf("GetIndex = %d\n", GetIndex(&list, p));
