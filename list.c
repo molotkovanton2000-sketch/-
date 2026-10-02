@@ -73,7 +73,7 @@ void Insert(List *list, Item *item, int index){
         Add(list, item);
         return;
     }
-    
+
     if (next1 == list->head){
         item->prev = NULL;
         item->next = list->head;
@@ -81,7 +81,7 @@ void Insert(List *list, Item *item, int index){
         list->head = item;
         return;
     }
-    
+
     Item *prev1 = next1->prev;
     item->prev = prev1;
     item->next = next1;
@@ -91,9 +91,8 @@ void Insert(List *list, Item *item, int index){
 
 void Clear(List *list){
     if (list == NULL) return;
-    Item *p = list->head;
     while (list->head)
-    	Delete(list, 0);
+        Delete(list, 0);
     list->head = NULL;
     list->tail = NULL;
 }

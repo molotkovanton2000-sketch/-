@@ -93,7 +93,7 @@ void Insert(List *list, Item *item, int index){
         Add(list, item);
         return;
     }
-    
+
     if (next1 == list->head){
         item->prev = NULL;
         item->next = list->head;
@@ -101,7 +101,7 @@ void Insert(List *list, Item *item, int index){
         list->head = item;
         return;
     }
-    
+
     Item *prev1 = next1->prev;
     item->prev = prev1;
     item->next = next1;
@@ -111,9 +111,8 @@ void Insert(List *list, Item *item, int index){
 
 void Clear(List *list){
     if (list == NULL) return;
-    Item *p = list->head;
     while (list->head)
-    	Delete(list, 0);
+        Delete(list, 0);
     list->head = NULL;
     list->tail = NULL;
 }
@@ -169,7 +168,13 @@ int main(void){
         printf("8. GetIndex\n");
         printf("0. Exit\n");
         printf("Choice: ");
-        scanf("%d", &choice);
+
+        if (scanf("%d", &choice) != 1){
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            printf("Неверный ввод. Введите число.\n");
+            continue;
+        }
 
         if (choice == 1){
             Item *it = (Item*)malloc(sizeof(Item));
@@ -188,21 +193,48 @@ int main(void){
         else if (choice == 4){
             int idx;
             printf("index: ");
-            scanf("%d", &idx);
+            if (scanf("%d", &idx) != 1){
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                printf("Неверный ввод.\n");
+                continue;
+            }
+            if (idx < 0){
+                printf("Индекс не может быть отрицательным.\n");
+                continue;
+            }
             Item *p = GetItem(&list, idx);
             printf("GetItem(%d) = %p\n", idx, (void*)p);
         }
         else if (choice == 5){
             int idx;
             printf("index: ");
-            scanf("%d", &idx);
+            if (scanf("%d", &idx) != 1){
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                printf("Неверный ввод.\n");
+                continue;
+            }
+            if (idx < 0){
+                printf("Индекс не может быть отрицательным.\n");
+                continue;
+            }
             Delete(&list, idx);
             printf("Deleted. Count = %d\n", Count(&list));
         }
         else if (choice == 6){
             int idx;
             printf("index: ");
-            scanf("%d", &idx);
+            if (scanf("%d", &idx) != 1){
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                printf("Неверный ввод.\n");
+                continue;
+            }
+            if (idx < 0){
+                printf("Индекс не может быть отрицательным.\n");
+                continue;
+            }
             Item *it = (Item*)malloc(sizeof(Item));
             if (it == NULL){ printf("malloc failed\n"); continue; }
             it->prev = NULL;
@@ -217,7 +249,12 @@ int main(void){
         else if (choice == 8){
             Item *p;
             printf("pointer (hex, like 0x...): ");
-            scanf("%p", (void**)&p);
+            if (scanf("%p", (void**)&p) != 1){
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                printf("Неверный указатель.\n");
+                continue;
+            }
             printf("GetIndex = %d\n", GetIndex(&list, p));
         }
     }
